@@ -3,9 +3,11 @@ package com.cloud.server.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.cloud.server.AdminUtils;
 import com.cloud.server.config.security.component.JwtTokenUtil;
+import com.cloud.server.mapper.AdminRoleMapper;
 import com.cloud.server.mapper.RoleMapper;
 import com.cloud.server.pojo.Admin;
 import com.cloud.server.mapper.AdminMapper;
+import com.cloud.server.pojo.AdminRole;
 import com.cloud.server.pojo.ResBean;
 import com.cloud.server.pojo.Role;
 import com.cloud.server.service.IAdminService;
@@ -18,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,10 +49,12 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private AdminMapper adminMapper;
-    @ Autowired
+    @Autowired
     private RoleMapper roleMapper;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
+    @Autowired
+    private AdminRoleMapper adminRoleMapper;
     /**
      * 登录之后返回token
      * @param username
@@ -110,6 +115,23 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      */
     public List<Admin> getAllAdmins(String keywords) {
         return adminMapper.getAllAdmins(AdminUtils.getCurrentAdmin().getId(),keywords);
+    }
+
+    /**
+     * 更新操作员角色
+     * @param adminId
+     * @param rids
+     * @return
+     */
+    @Transactional
+    public ResBean updateAdminRole(Integer adminId, Integer[] rids) {
+        //先删除，再根据adminId和rids插入
+        adminRoleMapper.delete(new QueryWrapper<AdminRole>().eq("adminId",adminId));
+        Integer result=adminRoleMapper.addAdminRole(adminId,rids);
+        if(rids.length==result){
+            return ResBean.success("更新成功！");
+        }
+        return ResBean.error("更新失败！");
     }
 
 

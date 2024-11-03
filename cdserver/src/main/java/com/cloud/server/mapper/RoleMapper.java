@@ -2,6 +2,7 @@ package com.cloud.server.mapper;
 
 import com.cloud.server.pojo.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @author liangzijie
  * @since 2024-10-21
  */
+@Mapper
 public interface RoleMapper extends BaseMapper<Role> {
 
     /**
