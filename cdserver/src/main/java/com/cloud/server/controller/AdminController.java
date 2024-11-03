@@ -2,14 +2,11 @@ package com.cloud.server.controller;
 
 
 import com.cloud.server.pojo.Admin;
+import com.cloud.server.pojo.ResBean;
 import com.cloud.server.service.IAdminService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +30,23 @@ public class AdminController {
         return adminService.getAllAdmins(keywords);
     }
 
+    @ApiOperation(value="更新操作员")
+    @PutMapping("/")
+    public ResBean updateAdmin(@RequestBody Admin admin){
+        if(adminService.updateById(admin)){
+            return ResBean.success("更新成功！");
+        }
+        else
+            return ResBean.error("更新失败！");
+    }
 
+    @ApiOperation(value="删除操作员")
+    @DeleteMapping("/{id}")
+    public ResBean deleteAdmin(@PathVariable Integer id){
+        if(adminService.removeById(id)){
+            return ResBean.success("删除成功！");
+        }
+        return ResBean.error("删除失败！");
+    }
 
 }
