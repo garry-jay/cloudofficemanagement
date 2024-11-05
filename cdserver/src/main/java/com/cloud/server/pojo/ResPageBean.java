@@ -16,5 +16,5 @@ public class ResPageBean {
     //总条数
     private Long total;
     //数据list
-    private List<?> date;
+    private List<?> data;
 }
