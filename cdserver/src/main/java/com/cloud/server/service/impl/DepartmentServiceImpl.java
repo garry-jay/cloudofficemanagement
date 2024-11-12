@@ -27,7 +27,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
      * 获取所有部门
      * @return
      */
-    public List<Department> getAllDepartments(Integer parentId) {
+    public List<Department> getAllDepartments() {
         return departmentMapper.getAllDepartments(-1);
     }
 

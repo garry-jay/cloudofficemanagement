@@ -20,7 +20,7 @@ public interface IDepartmentService extends IService<Department> {
      * 获取所有部门
      * @return
      */
-    List<Department> getAllDepartments(Integer parentId);
+    List<Department> getAllDepartments();
 
     /**
      * 添加部门

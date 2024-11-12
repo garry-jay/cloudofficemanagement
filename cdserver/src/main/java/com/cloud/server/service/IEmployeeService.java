@@ -2,6 +2,7 @@ package com.cloud.server.service;
 
 import com.cloud.server.pojo.Employee;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cloud.server.pojo.ResBean;
 import com.cloud.server.pojo.ResPageBean;
 
 import java.time.LocalDate;
@@ -25,4 +26,17 @@ public interface IEmployeeService extends IService<Employee> {
      */
 
     ResPageBean getEmployeeByPage(Integer currentPage, Integer size, Employee employee, LocalDate[] beginDateScope);
+
+    /**
+     * 获取工号
+     * @return
+     */
+    ResBean maxWorkId();
+
+    /**
+     * 添加员工
+     * @param employee
+     * @return
+     */
+    ResBean addEmp(Employee employee);
 }
