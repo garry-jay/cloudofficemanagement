@@ -74,4 +74,11 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         }
         return ResBean.error("添加失败！");
     }
+
+    /**
+     * 查询员工 传了id就只查一条，不传id差所有
+     */
+    public List<Employee> getEmployee(Integer id) {
+        return employeeMapper.getEmployee(id);
+    }
 }

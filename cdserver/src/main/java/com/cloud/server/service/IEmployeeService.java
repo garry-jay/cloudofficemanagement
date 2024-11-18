@@ -6,6 +6,7 @@ import com.cloud.server.pojo.ResBean;
 import com.cloud.server.pojo.ResPageBean;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * <p>
@@ -39,4 +40,9 @@ public interface IEmployeeService extends IService<Employee> {
      * @return
      */
     ResBean addEmp(Employee employee);
+
+    /**
+     * 查询员工 传了id就只查一条，不传id差所有
+     */
+    List<Employee> getEmployee(Integer id);
 }
