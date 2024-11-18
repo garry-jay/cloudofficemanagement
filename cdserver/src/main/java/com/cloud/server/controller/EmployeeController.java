@@ -82,4 +82,23 @@ public class EmployeeController {
         return employeeService.addEmp(employee);
     }
 
+    @ApiOperation(value="更新员工")
+    @PutMapping("/")
+    public ResBean updateEmp(@RequestBody Employee employee){
+        if(employeeService.updateById(employee)) {
+            return ResBean.success("更新成功!");
+        }
+        return ResBean.error("更新失败！");
+    }
+
+    @ApiOperation(value="删除员工")
+    @DeleteMapping("/{id}")
+    public ResBean deleteEmp(@PathVariable Integer id){
+        if(employeeService.removeById(id)){
+            return ResBean.success("删除成功！");
+        }
+        return ResBean.error("删除失败!");
+    }
+
+
 }
