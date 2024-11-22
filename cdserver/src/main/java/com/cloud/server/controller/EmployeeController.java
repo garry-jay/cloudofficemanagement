@@ -2,7 +2,9 @@ package com.cloud.server.controller;
 
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import com.cloud.server.pojo.*;
 import com.cloud.server.service.*;
@@ -10,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -112,7 +115,7 @@ public class EmployeeController {
     @GetMapping(value="/export",produces = "application/octet-stream")//produces规定以流的形式输出
     public void exportEmployee(HttpServletResponse response){//以流的形式导出要用这个：HttpServletResponse response
         List<Employee> list = employeeService.getEmployee(null);
-        //第一个参数是文件名、第二个参数是表名，第三个参数是文件后缀 xls
+        //第一个参数是标题、第二个参数是表名，第三个参数是文件后缀 xls
         ExportParams params=new ExportParams("员工表","员工表", ExcelType.HSSF);
         //第二个参数是对象
         Workbook workbook = ExcelExportUtil.exportExcel(params, Employee.class, list);
@@ -138,5 +141,41 @@ public class EmployeeController {
         }
     }
 
+    @ApiOperation(value="导入员工数据")
+    @PostMapping("/import")
+
+    public ResBean importEmployee(MultipartFile file){
+        ImportParams params =new ImportParams();
+        //去掉标题行
+        params.setTitleRows(1);
+        List<Nation> nationList = nationService.list();
+        List<PoliticsStatus> politicsStatusList = politicsStatusService.list();
+        List<Department> departmentList = departmentService.list();
+        List<Joblevel> joblevelList = joblevelService.list();
+        List<Position> positionList = positionService.list();
+        try {
+            List<Employee> list = ExcelImportUtil.importExcel(file.getInputStream(), Employee.class, params);
+            list.forEach(employee -> {
+                //通过nationlist获取索引下标，因为我重载了hashcode和equal，现在他用name去比较了,这样就只查一个数据库，不然的话，你每一个name都去查数据库
+                //设置民族id
+                employee.setNationId(nationList.get(nationList.indexOf(new Nation(employee.getNation().getName()))).getId());
+                //设置政治面貌id
+                employee.setPoliticId(politicsStatusList.get(politicsStatusList.indexOf(new PoliticsStatus(employee.getPoliticsStatus().getName()))).getId());
+                //设置部门id
+                employee.setDepartmentId(departmentList.get(departmentList.indexOf(new Department(employee.getDepartment().getName()))).getId());
+                //职称id
+                employee.setJobLevelId(joblevelList.get(joblevelList.indexOf(new Joblevel(employee.getJoblevel().getName()))).getId());
+                //职位id
+                employee.setPosId(positionList.get(positionList.indexOf(new Position(employee.getPosition().getName()))).getId());
+
+            });
+            if(employeeService.saveBatch(list)){
+                return ResBean.success("导入成功！");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResBean.error("导入失败！");
+    }
 
 }
