@@ -10,7 +10,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.yeb</groupId>
     <artifactId>cdserver</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
         <!--web依赖-->
@@ -92,6 +94,10 @@
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-spring-boot-starter</artifactId>
             <version>4.1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
     </dependencies>
     <properties>

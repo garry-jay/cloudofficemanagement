@@ -48,15 +48,17 @@ spring:
         #最小空闲连接数
         min-idle: 5
 
-#  rabbitmq:
-#    username: admin
-#    password: 6585962sdh
-#    host: 59.110.138.128
-#    port: 5672
-#    # 消息确认回调
-#    publisher-confirm-type: correlated
-#    # 消息失败回调
-#    publisher-returns: true
+  rabbitmq:
+    username: guest
+    password: guest
+    #服务器地址
+    host: localhost
+    #端口
+    port: 5672
+    #消息确认回调
+    publisher-confirm-type: correlated
+    #消息失败回到
+    publisher-returns: true
 
 mybatis-plus:
   # 配置Mapper映射文件

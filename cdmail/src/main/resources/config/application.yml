@@ -1,0 +1,20 @@
+server:
+  #端口
+  port: 8082
+
+spring:
+  # 邮件配置
+  mail:
+    host: smtp.163.com
+    protocol: smtp
+    default-encoding: UTF-8
+    password: DUn3Wn3YqN2nYbt6  #填写实际申请的授权码
+    username: 13662732185@163.com #填写实际申请的邮箱
+    port: 25
+  rabbitmq:
+    username: guest
+    password: guest
+    #服务器地址
+    host: localhost
+    #端口
+    port: 5672

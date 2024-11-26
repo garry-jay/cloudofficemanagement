@@ -9,6 +9,7 @@
     <modules>
         <module>cdserver</module>
         <module>cdgenerator</module>
+        <module>cdmail</module>
     </modules>
     <name>cloud</name>
     <description>cloud</description>
