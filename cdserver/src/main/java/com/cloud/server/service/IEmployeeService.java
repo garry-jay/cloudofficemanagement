@@ -45,4 +45,12 @@ public interface IEmployeeService extends IService<Employee> {
      * 查询员工 传了id就只查一条，不传id差所有
      */
     List<Employee> getEmployee(Integer id);
+
+    /**
+     * 获取所有员工账套
+     * @param currentPage
+     * @param size
+     * @return
+     */
+    ResPageBean getEmployeeWithSalary(Integer currentPage, Integer size);
 }
