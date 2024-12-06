@@ -8,7 +8,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.cloud.server.config.CustomAuthorityDeserializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
@@ -75,7 +77,8 @@ public class Admin implements Serializable, UserDetails {
 
     //无法将JSON返回到前端有很多原因,这里的解决方法是对UserDetails的实现类中的方法添加注解
     // 表示这个方法的返回值在序列化时将被忽略
-    @JsonIgnore
+//    @JsonIgnore
+    @JsonDeserialize(using= CustomAuthorityDeserializer.class)
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //role转为SimpleGrantedAuthority然后返回
