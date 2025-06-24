@@ -77,9 +77,9 @@ public class Admin implements Serializable, UserDetails {
 
     //无法将JSON返回到前端有很多原因,这里的解决方法是对UserDetails的实现类中的方法添加注解
     // 表示这个方法的返回值在序列化时将被忽略
-//    @JsonIgnore
-    @JsonDeserialize(using= CustomAuthorityDeserializer.class)
+    @JsonIgnore
     @Override
+//    @JsonDeserialize(using= CustomAuthorityDeserializer.class)
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //role转为SimpleGrantedAuthority然后返回
         List<SimpleGrantedAuthority> authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role.getName()))

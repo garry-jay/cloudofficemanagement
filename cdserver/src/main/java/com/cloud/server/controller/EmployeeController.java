@@ -30,6 +30,7 @@ import java.util.List;
  * @since 2024-10-21
  */
 @RestController
+//@RequestMapping("/system/basic/employee")
 @RequestMapping("/employee/basic")
 public class EmployeeController {
     @Autowired
@@ -52,25 +53,25 @@ public class EmployeeController {
     }
 
     @ApiOperation(value="获取所有政治面貌")
-    @GetMapping("/politicsstatus")
+    @GetMapping("/politicsStatus")
     public List<PoliticsStatus> getAllPoliticsStatus(){
         return politicsStatusService.list();
     }
 
     @ApiOperation(value="获取所有职称")
-    @GetMapping("/joblevels")
+    @GetMapping("/joblevel")
     public List<Joblevel> getAllJoblevels(){
         return joblevelService.list();
     }
 
     @ApiOperation(value="获取所有民族")
-    @GetMapping("/nations")
+    @GetMapping("/nation")
     public List<Nation> getAllNations(){
         return nationService.list();
     }
 
     @ApiOperation(value="获取所有职位")
-    @GetMapping("/positions")
+    @GetMapping("/position")
     public List<Position> getAllPositions(){
         return positionService.list();
     }

@@ -18,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 
 /**
  * Security配置类
@@ -84,6 +85,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cacheControl();
         //添加jwt，登录授权过滤器
         http.addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+//        //新增 配置 CORS
+//        http.cors().configurationSource(request -> {
+//                    CorsConfiguration config = new CorsConfiguration();
+//                    config.setAllowCredentials(true);  // 允许发送凭证（cookies）
+//                    config.addAllowedOrigin("http://localhost:*");  // 替换为允许的域名
+//                    config.addAllowedMethod("*");  // 允许所有请求方法
+//                    config.addAllowedHeader("*");  // 允许所有请求头
+//                    return config;
+//                })
+//                .and();
         //添加自定义未授权和未登录结果返回
         http.exceptionHandling()
                 .accessDeniedHandler(restfulAccessDeniedHand)

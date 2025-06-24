@@ -1,21 +1,16 @@
 package com.cloud.server.service.impl;
 
-import com.cloud.server.AdminUtils;
-import com.cloud.server.pojo.Admin;
+import com.cloud.server.utils.AdminUtils;
 import com.cloud.server.pojo.Menu;
 import com.cloud.server.mapper.MenuMapper;
-import com.cloud.server.pojo.ResBean;
 import com.cloud.server.service.IMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collection;
 import java.util.List;
 
 /**

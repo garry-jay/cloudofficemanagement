@@ -3,6 +3,8 @@ package com.cloud.server.pojo;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
@@ -42,7 +44,8 @@ public class Joblevel implements Serializable {
 
     @ApiModelProperty(value = "创建时间")
     @JsonFormat(pattern="yyyy-MM-dd",timezone = "Asia/Shanghai")
-    private LocalDateTime createDate;
+//    private LocalDateTime createDate;
+    private LocalDate createDate;
 
     @ApiModelProperty(value = "是否启用")
     private Boolean enabled;

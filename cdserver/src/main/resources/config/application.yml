@@ -9,6 +9,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/cloudoffice
+#    url: jdbc:mysql://8.138.169.89:3306/cloudoffice
     username: root
     password: 1234
     hikari:
@@ -33,7 +34,7 @@ spring:
     host: localhost
     #服务器端口
     port: 6379
-    password: 123456
+#    password: 123456
     database: 0
     #超时时间
     timeout: 10000ms
@@ -84,3 +85,8 @@ jwt:
   expiration: 604800
   #JWT 负载中拿到开头
   tokenHead: Bearer
+
+deepseek:
+  api:
+    token: sk-e6f0f5cd938e43c6b64c84144fa1bc8b
+    url: https://api.deepseek.com/chat/completions

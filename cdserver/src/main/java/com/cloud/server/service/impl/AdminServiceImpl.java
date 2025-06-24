@@ -1,7 +1,7 @@
 package com.cloud.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.cloud.server.AdminUtils;
+import com.cloud.server.utils.AdminUtils;
 import com.cloud.server.config.security.component.JwtTokenUtil;
 import com.cloud.server.mapper.AdminRoleMapper;
 import com.cloud.server.mapper.RoleMapper;

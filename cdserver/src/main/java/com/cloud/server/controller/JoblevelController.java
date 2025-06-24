@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +38,8 @@ public class JoblevelController {
     @ApiOperation(value="添加职称")
     @PostMapping("/")
     public ResBean addJobLevel(@RequestBody Joblevel joblevel){
-        joblevel.setCreateDate(LocalDateTime.now());
+//        joblevel.setCreateDate(LocalDateTime.now());
+        joblevel.setCreateDate(LocalDate.now());
         if(joblevelService.save(joblevel)){
             return ResBean.success("添加成功！");
         }

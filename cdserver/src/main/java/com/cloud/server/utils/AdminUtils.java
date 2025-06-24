@@ -1,4 +1,4 @@
-package com.cloud.server;
+package com.cloud.server.utils;
 
 import com.cloud.server.pojo.Admin;
 import org.springframework.security.core.context.SecurityContextHolder;

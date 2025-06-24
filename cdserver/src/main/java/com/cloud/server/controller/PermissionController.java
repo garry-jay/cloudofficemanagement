@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * 权限组
  */
 @RestController
-@RequestMapping("/system/basic/permiss")
+@RequestMapping("/system/basic/permission")
 public class PermissionController {
     @Autowired
     private IRoleService roleService;

@@ -20,7 +20,7 @@ public class ChatController {
      private IAdminService adminService;
 
      @ApiOperation(value="获取所有操作员")
-     @GetMapping("/admin")
+     @GetMapping("/")
      public List<Admin> getAllAdmins(String keywords){
          return adminService.getAllAdmins(keywords);
      }

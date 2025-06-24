@@ -45,7 +45,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
          * 2.setAllowedOrigins("*"):允许跨域
          * 3.withSockJS（）:支持socketJs访问
          */
-        registry.addEndpoint("/ws/ep").setAllowedOrigins("*").withSockJS();
+//        registry.addEndpoint("/ws/ep").setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint("/ws/ep").setAllowedOrigins("http://localhost:9000").withSockJS();
     }
 
     /**
