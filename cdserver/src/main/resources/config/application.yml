@@ -88,5 +88,3 @@ jwt:
 
 deepseek:
   api:
-    token: sk-e6f0f5cd938e43c6b64c84144fa1bc8b
-    url: https://api.deepseek.com/chat/completions
